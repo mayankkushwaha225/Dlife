@@ -1,0 +1,73 @@
+models:
+  User:
+    name: string
+    email: string unique
+    password: string
+    mobile: tring nullable
+    role_id: id nullable foreign:roles
+    dob: date nullable
+    manager_id: id nullable foreign:users
+    address: string nullable
+    zip: string nullable
+    timestamps: true
+    softDeletes: true
+
+  Role:
+    name: string
+    timestamps: true
+    softDeletes: true
+
+  Permission:
+    name: string
+    timestamps: true
+    softDeletes: true
+
+  RolePermission:
+    role_id: id foreign:roles
+    permission_id: id foreign:permissions
+    timestamps: true
+    softDeletes: true
+
+  Product:
+    name: string
+    image: string nullable
+    price: double nullable
+    description: string nullable
+    category_id: id foreign:categories
+    subcategory_id: id foreign:subcategories
+    timestamps: true
+    softDeletes: true
+
+  Client:
+    first_name: string
+    last_name: string nullable
+    mobile: string nullable
+    pancard: string nullable unique
+    aadhar: string nullable unique
+    address: string nullable
+    zip: string nullable
+    agent_id: id nullable foreign:users
+    email: string nullable unique
+    dob: date nullable
+    marrige_date: date nullable    
+    timestamps: true
+    softDeletes: true
+
+  Order:
+    date: datetime
+    client_id: id foreign:clients 
+    product_id: id foreign:products
+    user_id: id foreign:users
+    timestamps: true
+    softDeletes: true
+
+  Category:
+    name: string
+    timestamps: true
+    softDeletes: true
+  
+  SubCategory:
+    name: string
+    category_id: id foreign:categories
+    timestamps: true
+    softDeletes: true

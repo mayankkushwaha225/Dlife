@@ -1,0 +1,38 @@
+created:
+    - database/factories/UserFactory.php
+    - database/factories/RoleFactory.php
+    - database/factories/PermissionFactory.php
+    - database/factories/RolePermissionFactory.php
+    - database/factories/ProductFactory.php
+    - database/factories/ClientFactory.php
+    - database/factories/OrderFactory.php
+    - database/factories/CategoryFactory.php
+    - database/factories/SubCategoryFactory.php
+    - database/migrations/2025_04_03_061644_create_users_table.php
+    - database/migrations/2025_04_03_061645_create_roles_table.php
+    - database/migrations/2025_04_03_061646_create_permissions_table.php
+    - database/migrations/2025_04_03_061647_create_role_permissions_table.php
+    - database/migrations/2025_04_03_061648_create_products_table.php
+    - database/migrations/2025_04_03_061649_create_clients_table.php
+    - database/migrations/2025_04_03_061650_create_orders_table.php
+    - database/migrations/2025_04_03_061651_create_categories_table.php
+    - database/migrations/2025_04_03_061652_create_sub_categories_table.php
+    - app/Models/User.php
+    - app/Models/Role.php
+    - app/Models/Permission.php
+    - app/Models/RolePermission.php
+    - app/Models/Product.php
+    - app/Models/Client.php
+    - app/Models/Order.php
+    - app/Models/Category.php
+    - app/Models/SubCategory.php
+models:
+    Client: { first_name: string, last_name: 'string nullable', mobile: 'string nullable', pancard: 'string nullable unique', aadhar: 'string nullable unique', address: 'string nullable', zip: 'string nullable', agent_id: 'id nullable foreign:users', email: 'string nullable unique', dob: 'date nullable', marrige_date: 'date nullable', timestamps: timestamps, softdeletes: softDeletes }
+    Order: { date: datetime, client_id: 'id foreign:clients', product_id: 'id foreign:products', user_id: 'id foreign:users', timestamps: timestamps, softdeletes: softDeletes }
+    Product: { name: string, image: 'string nullable', price: 'double nullable', description: 'string nullable', category_id: 'id foreign:categories', subcategory_id: 'id foreign:subcategories', timestamps: timestamps, softdeletes: softDeletes }
+    Role: { name: string, timestamps: timestamps, softdeletes: softDeletes }
+    User: { name: string, email: 'string unique', password: string, mobile: 'tring nullable', role_id: 'id nullable foreign:roles', dob: 'date nullable', manager_id: 'id nullable foreign:users', address: 'string nullable', zip: 'string nullable', timestamps: timestamps, softdeletes: softDeletes }
+    Category: { name: string, timestamps: timestamps, softdeletes: softDeletes }
+    SubCategory: { name: string, category_id: 'id foreign:categories', timestamps: timestamps, softdeletes: softDeletes }
+    Permission: { name: string, timestamps: timestamps, softdeletes: softDeletes }
+    RolePermission: { role_id: 'id foreign:roles', permission_id: 'id foreign:permissions', timestamps: timestamps, softdeletes: softDeletes }
