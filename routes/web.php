@@ -19,3 +19,4 @@ Route::get('/', function () {
 
 Route::get('admin/leads/export', [LeadCrudController::class, 'export']);
 Route::post('admin/leads/import', [LeadCrudController::class, 'import']);
+
